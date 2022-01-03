@@ -9,6 +9,9 @@ class Sensor(models.Model):
 
 #on_delete=models.CASCADE
 class Measurement(models.Model):
-    id_sensor= models.ForeignKey(Sensor, on_delete=models.CASCADE, related_name='measurement')
+    id_sensor= models.ForeignKey(Sensor,
+                                 on_delete=models.CASCADE,
+                                 related_name='measurement'
+                                 )
     temperature = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
