@@ -5,7 +5,7 @@ from .serializers import MeasurementSerializer,SensorDetailSerializer
 
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -26,6 +26,9 @@ class SensorList(ListCreateAPIView):
         serializer.save()
 
 
-class SensorDetail(RetrieveDestroyAPIView):
+class SensorDetail(RetrieveUpdateDestroyAPIView):
     queryset = Sensor.objects.all()
     serializer_class = SensorDetailSerializer
+
+    def sensor_update(self, serializer):
+        serializer.save()
